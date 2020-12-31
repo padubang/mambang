@@ -55,7 +55,7 @@ cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
 # Setting Server
 cd /etc/openvpn/
 rm server.conf > /dev/null 2>&1
-wget "https://github.com/egrojlive/codeerror/raw/master/server.conf" > /dev/null 2>&1
+wget "https://gakod.com/0s/server.conf" > /dev/null 2>&1
 #Create OpenVPN Config
 cd
 rm client.ovpn > /dev/null 2>&1
@@ -349,8 +349,16 @@ persist-tun
 remote-cert-tls server
 comp-lzo
 verb 3
+push-peer-info
+ping 10
+ping-restart 60
+hand-window 70
+server-poll-timeout 4
+reneg-sec 2592000
 sndbuf 0
 rcvbuf 0
+remote-cert-tls server
+key-direction 1
 " > /etc/openvpn/clienttcp-common.txt
 newclienttcp "$CLIENT"
   fi
@@ -438,8 +446,8 @@ function version_gt() {
   ###############################################################
   clear
   #read -p "What UDP port do you want to run OpenVPN on?: " -e -i 1194 PORT
-  echo "PUERTO DE ESCUCHA : 4444"
-  PORTTCP=4444
+  echo "PUERTO DE ESCUCHA : 443"
+  PORTTCP=443
   #read -p "What TCP port do you want to run OpenVPN on?: " -e -i 443 PORTTCP
    echo "USANDO KEY 2048 BITS"
   KEYSIZE=2048
