@@ -60,6 +60,9 @@ apt-get -y autoremove;
 apt-get -y install wget curl;
 echo "
 "
+# update
+apt update && apt upgrade -y
+
 # script
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/macisvpn/premiumnow/master/common-password"
 chmod +x /etc/pam.d/common-password
